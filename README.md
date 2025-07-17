@@ -167,6 +167,8 @@ python -m pytest tests/
 python main.py
 ```
 
+*For detailed technical documentation, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md)*
+
 ## 📝 License
 
 MIT License - see [LICENSE](LICENSE) for details.
