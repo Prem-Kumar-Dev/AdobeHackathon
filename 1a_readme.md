@@ -94,10 +94,10 @@ mkdir input output
 cp sample.pdf input/
 
 # Step 2: Build Docker image
-docker build --platform linux/amd64 -t pdf-outline-extractor .
+docker build --platform linux/amd64 -t pdf-analyzer .
 
 # Step 3: Run your solution
-docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none pdf-outline-extractor
+docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none pdf-analyzer
 
 # Step 4: View the result
 cat output/sample.json

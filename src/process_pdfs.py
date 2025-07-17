@@ -342,6 +342,34 @@ def process_pdfs():
             output_file = output_dir / f"{pdf_file.stem}.json"
             save_json(output_file, output_data)
 
+def process_pdf_to_outline(pdf_path):
+    """
+    Unified interface function for processing a single PDF file
+    Returns the outline data structure for use by main.py
+    """
+    try:
+        # Load PDF
+        pages = load_pdf(pdf_path)
+        
+        if not pages:
+            return {"title": "", "outline": []}
+        
+        # Extract title
+        title = extract_title(pages)
+        
+        # Extract headings
+        outline = extract_headings(pages)
+        
+        # Return structured data
+        return {
+            "title": title,
+            "outline": outline
+        }
+        
+    except Exception as e:
+        print(f"Error processing {pdf_path}: {e}")
+        return {"title": "", "outline": []}
+
 if __name__ == "__main__":
     print("🚀 Adobe India Hackathon - Round 1A: PDF Outline Extractor")
     print("=" * 60)
