@@ -274,4 +274,4 @@ This project is created for the Adobe India Hackathon 2025 - Round 1A challenge.
 
 **Built with ❤️ for Adobe India Hackathon 2025**
 
-*For detailed technical documentation, see [docs/MAIN_README.md](docs/MAIN_README.md)*
+*For detailed technical documentation, see [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md)*
