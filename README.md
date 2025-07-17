@@ -59,14 +59,10 @@ python scripts/run_solution.py
 
 ```bash
 # Build the container
-docker build --platform linux/amd64 -t pdf-outline-extractor .
+docker build --platform linux/amd64 -t pdf-outline-extractor:latest .
 
 # Run with mounted directories
-docker run --rm \
-  -v $(pwd)/input:/app/input \
-  -v $(pwd)/output:/app/output \
-  --network none \
-  pdf-outline-extractor
+docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none pdf-outline-extractor:latest
 ```
 
 ### Option 3: Build Scripts
@@ -83,7 +79,46 @@ cd scripts
 ./build_and_test.sh
 ```
 
-## 🔧 Technical Features
+## 🧪 Example Usage
+
+```bash
+# Step 1: Prepare folders
+mkdir input output
+cp sample.pdf input/
+
+# Step 2: Build Docker image
+docker build --platform linux/amd64 -t pdf-outline-extractor .
+
+# Step 3: Run your solution
+docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --network none pdf-outline-extractor
+
+# Step 4: View the result
+cat output/sample.json
+```
+
+## � Docker & Execution Requirements
+
+* **Architecture**: Must support `linux/amd64` (`x86_64`)
+* **Dependencies**: No GPU dependencies, must work **fully offline**
+* **Model Size**: ≤ 200MB (if using a model)
+
+#### Build Command
+
+```bash
+docker build --platform linux/amd64 -t pdf-outline-extractor:latest .
+```
+
+#### Run Command
+
+```bash
+docker run --rm \
+  -v $(pwd)/input:/app/input \
+  -v $(pwd)/output:/app/output \
+  --network none \
+  pdf-outline-extractor:latest
+```
+
+## �🔧 Technical Features
 
 ### Multi-Method Heading Detection
 - **Pattern Recognition**: Detects numbered sections (1., 1.1, 1.1.1), chapters, and sections
@@ -102,6 +137,15 @@ cd scripts
 - **Memory**: Minimal memory footprint
 - **Size**: < 50MB total footprint (under 200MB limit)
 - **Scalability**: Handles up to 50-page documents efficiently
+
+## ⏱️ Constraints
+
+| Constraint           | Requirement                    |
+| -------------------- | ------------------------------ |
+| Execution Time       | ≤ 10 seconds for a 50-page PDF |
+| Model Size (if used) | ≤ 200MB                        |
+| Network              | **No internet access allowed** |
+| Runtime              | CPU-only, 8 CPUs + 16 GB RAM   |
 
 ## 📊 Performance Metrics
 
@@ -137,6 +181,15 @@ cd scripts
 }
 ```
 
+## 🏆 Scoring Criteria
+
+| Criteria                                          | Max Points |
+| ------------------------------------------------- | ---------- |
+| Heading Detection Accuracy (Precision/Recall)     | 25         |
+| Performance (Execution Time & Model Size)         | 10         |
+| **Bonus**: Multilingual Handling (e.g., Japanese) | 10         |
+| **Total**                                         | **45**     |
+
 ## 🧪 Testing
 
 ### Run All Tests
@@ -163,7 +216,16 @@ python tests/test_local.py
 - ✅ **Platform**: Linux/amd64 compatible
 - ✅ **Size**: < 200MB total footprint
 
-## 🛠️ Development
+## � Submission Checklist
+
+* ✅ Git project with a `Dockerfile` at the root
+* ✅ A working `Dockerfile` with all dependencies
+* ✅ A `README.md` that explains:
+  * Your technical approach
+  * Any models or libraries used
+  * Instructions to build and run your solution
+
+## �🛠️ Development
 
 ### Dependencies
 - **PyMuPDF (fitz)**: Advanced PDF processing with font information
@@ -191,7 +253,20 @@ This project is structured for easy extension and maintenance:
 3. **Performance tuning**: Optimize algorithms in `determine_heading_level`
 4. **Testing**: Add test cases in the `tests/` directory
 
-## 📄 License
+## � Pro Tips
+
+* Don't rely **only on font size** to determine heading levels — real-world PDFs vary.
+* Test your code on a **variety of PDFs**, from academic papers to reports.
+* Write **modular code** — you'll need it again in **Round 1B**.
+* If you're supporting **multilingual content**, add a short note on it for reviewers.
+
+## 🚫 What Not to Do
+
+* ❌ Don't hardcode heading logic for a specific file
+* ❌ Don't make **any API or internet calls**
+* ❌ Don't exceed the runtime or model size limits
+
+## �📄 License
 
 This project is created for the Adobe India Hackathon 2025 - Round 1A challenge.
 
