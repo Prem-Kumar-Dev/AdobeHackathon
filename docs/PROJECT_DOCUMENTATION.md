@@ -26,24 +26,24 @@ This document provides comprehensive technical documentation for the Adobe India
 │  ┌─────────────────┐    ┌─────────────────────────────┐ │
 │  │  Input Analysis │    │    Round Detection Logic    │ │
 │  │                 │    │                             │ │
-│  │ • PDF Count     │    │ • /app/persona exists?     │ │
-│  │ • Directory     │    │ • persona.json present?    │ │
-│  │   Structure     │    │ • Collection patterns      │ │
+│  │ • PDF Count     │    │ • /app/persona exists?      │ │
+│  │ • Directory     │    │ • persona.json present?     │ │
+│  │   Structure     │    │ • Collection patterns       │ │
 │  └─────────────────┘    └─────────────────────────────┘ │
-│              │                        │                │
-│              └────────┬───────────────┘                │
-│                       │                                │
-│         ┌─────────────▼─────────────┐                  │
-│         │     Round Selection       │                  │
-│         │                           │                  │
-│         │  Round 1A  │  Round 1B    │                  │
-│         │     ▼      │      ▼       │                  │
-│         │ ┌─────────┐│ ┌───────────┐ │                  │
-│         │ │ process_│││ │ persona_  │ │                  │
-│         │ │ pdfs.py ││ │intelligence│ │                  │
-│         │ │         ││ │    .py    │ │                  │
-│         │ └─────────┘│ └───────────┘ │                  │
-│         └─────────────┴─────────────┘                  │
+│              │                        │                 │
+│              └────────┬───────────────┘                 │
+│                       │                                 │ 
+│         ┌─────────────▼─────────────┐                   │
+│         │     Round Selection       │                   │
+│         │                           │                   │
+│         │  Round 1A  │  Round 1B    │                   │
+│         │     ▼      │      ▼       │                   │
+│         │ ┌─────────┐│ ┌───────────┐│                   │
+│         │ │ process_││ │ persona_  ││                   │
+│         │ │ pdfs.py ││ │intelligenc││                   │
+│         │ │         ││ │    e.py   ││                   │
+│         │ └─────────┘│ └───────────┘│                   │
+│         └────────────┴──────────────┘                   │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -55,9 +55,9 @@ Input Scenarios:
 │   Round 1A       │    │           Round 1B              │
 │                  │    │                                 │
 │ /app/input/      │    │ /app/input/          AND        │
-│   ├── doc1.pdf   │    │   ├── doc1.pdf                 │
-│   ├── doc2.pdf   │    │   ├── doc2.pdf                 │
-│   └── doc3.pdf   │    │   └── doc3.pdf                 │
+│   ├── doc1.pdf   │    │   ├── doc1.pdf                  │
+│   ├── doc2.pdf   │    │   ├── doc2.pdf                  │
+│   └── doc3.pdf   │    │   └── doc3.pdf                  │
 │                  │    │                                 │
 │ (No persona dir) │    │ /app/persona/                   │
 │                  │    │   └── persona.json              │
@@ -68,7 +68,7 @@ Input Scenarios:
 │ Output 1A        │    │          Output 1B              │
 │                  │    │                                 │
 │ /app/output/     │    │ /app/output/                    │
-│   ├── doc1.json  │    │   └── persona_intelligence_    │
+│   ├── doc1.json  │    │   └── persona_intelligence_     │
 │   ├── doc2.json  │    │       output.json               │
 │   └── doc3.json  │    │                                 │
 └──────────────────┘    └─────────────────────────────────┘
